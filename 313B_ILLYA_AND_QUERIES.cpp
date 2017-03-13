@@ -1,47 +1,34 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 int main()
 {
     string S;
     cin>>S;
     int L=S.length();
-    int A[L];
+    int A[L][L];
     for(int i=0;i<L;i++)
-        A[i]=1;
-    for(int i=0;i<L-1;i++)
     {
-        if(S[i]==S[i+1])
-           A[i+1]=A[i]+1;
-           cout<<A[i]<<endl;
+        for(int j=0;j<L;j++)
+        {
+            if(i==j)
+                A[i][j]=0;
+           else if(S[j-1]==S[j])
+            {
+                A[i][j]=A[i][j-1]+1;
+            }
+            else
+                A[i][j]=A[i][j-1];
+        }
     }
     int N;
     cin>>N;
    while(N)
     {
-        int count=0;
      int l,r;
      cin>>l>>r;
-        for(int i=l;i<r;i++)
-        {
-            if(A[i]>1)
-             count++;
-        }
-
-        cout<<count<<endl;
-
-
-
-
-        N--;
+        cout<<A[l-1][r-1]<<endl;
+       N--;
     }
-
-
-
-
-
-
-
-
-
-    return 0;
+return 0;
 }
