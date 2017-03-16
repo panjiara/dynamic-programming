@@ -9,17 +9,40 @@ int main()
     int A[n];
     for(int i=0;i<n;i++)
         cin>>A[i];
-    for(int i=0;i<n-k;i++)
-    {
+        int flag=0;
         int sum=0;
-       for(int j=i;j<i+k;j++)
-       {
-           sum+=A[j];
-       }
-        if(sum<res)
+    for(int i=0;i<=n-k;i++)
+    {
+
+        if(flag==0)
         {
-            res=sum;
-            index=i;
+            sum=0;
+            for(int j=i;j<i+k;j++)
+            {
+                sum+=A[i];
+
+            }
+            if(sum<res)
+            {
+                res=sum;
+                index=i;
+            }
+            flag=1;
+        }
+        else
+        {
+          if(sum-A[i-1]+A[i+k-1]<sum&&sum-A[i-1]+A[i+k-1]<res)
+          {
+              res=sum;
+              index=i;
+          }
+          else
+          {
+           sum=sum-A[i-1]+A[i+k-1];
+          }
+
+
+
         }
 
 
